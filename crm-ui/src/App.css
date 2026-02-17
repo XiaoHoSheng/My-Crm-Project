@@ -1,0 +1,133 @@
+/* src/App.css */
+
+/* ✅ 让根节点占满窗口，避免某些浏览器/布局在半屏时高度异常 */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* 让 antd Layout 全屏、内容区可滚动 */
+.crm-layout {
+  min-height: 100vh;
+}
+
+/* AntD Layout 是 flex；小屏时必须允许内容区收缩，否则会出现“半屏挤爆/不显示” */
+.crm-layout,
+.crm-layout > .ant-layout {
+  min-width: 0;
+}
+
+/* 左侧栏 */
+.crm-sider {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+/* Sider 顶部 Logo */
+.crm-logo {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  color: #fff;
+}
+
+.crm-logo-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.18);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.crm-logo-text {
+  font-weight: 600;
+  opacity: 0.95;
+}
+
+/* 顶部栏 */
+.crm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.crm-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.crm-header-title {
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.crm-sider-trigger {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+}
+
+.crm-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.crm-user {
+  color: #111;
+  font-weight: 500;
+}
+
+/* 内容区：关键是允许横向滚动，避免半屏把表格挤变形 */
+.crm-content {
+  padding: 16px;
+  overflow: auto;
+  min-width: 0;
+}
+
+.crm-content-inner {
+  width: 100%;
+  min-width: 0; /* ✅ 关键：允许内部元素正确缩放 */
+  overflow-x: auto; /* ✅ 关键：小屏时出现横向滚动条 */
+}
+
+/* 让 Table 在窄屏不要把每个字挤成竖排 */
+.crm-content-inner .ant-table {
+  min-width: 900px; /* 你也可以改成 1000/1100，看列多少 */
+}
+
+/* 小屏微调 */
+@media (max-width: 992px) {
+  .crm-content {
+    padding: 12px;
+  }
+}
+
+/* ===== CRM 表格：半屏不“竖排字” ===== */
+.crm-table .ant-table-thead > tr > th,
+.crm-table .ant-table-tbody > tr > td {
+  white-space: nowrap;
+}
+
+.crm-table .ant-table-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 表格内容区域允许横向滚动兜底 */
+.crm-table .ant-table-content {
+  overflow-x: auto;
+}
