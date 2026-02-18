@@ -8,6 +8,7 @@ builder.Services.AddControllers();
 // ✅ 依赖注入：Repository
 builder.Services.AddScoped<crm_api.Repositories.CustomerRepository>();
 builder.Services.AddScoped<crm_api.Repositories.CustomerTypeRepository>();
+builder.Services.AddScoped<crm_api.Repositories.OpportunityRepository>();
 
 // ✅ CORS：允许前端 Vite 访问
 builder.Services.AddCors(options =>
